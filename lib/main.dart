@@ -70,6 +70,9 @@ class _MyHomePageState extends State<MyHomePage> {
       case 1:
         page = FavoritesPage();
         break;
+      case 2:
+        page = DataTablePage();
+        break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }
@@ -92,6 +95,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     NavigationRailDestination(
                       icon: Icon(Icons.favorite),
                       label: Text('Favorites'),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.table_chart_outlined),
+                      label: Text('Table'),
                     ),
                   ],
                   selectedIndex: selectedIndex,
@@ -191,6 +198,68 @@ class FavoritesPage extends StatelessWidget {
   }
 }
 
+class DataTablePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Sample Data Table'),
+      ),
+      body: Scrollbar(
+        thickness: 10.0, // Adjust the thickness of the scroll bar
+        thumbVisibility: true, // Show the scroll bar always
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: DataTable(
+            columns: const <DataColumn>[
+              DataColumn(label: Text('Name')),
+              DataColumn(label: Text('Address')),
+              DataColumn(label: Text('City')),
+              DataColumn(label: Text('Country')),
+              DataColumn(label: Text('Birthday')),
+              DataColumn(label: Text('Age')),
+              DataColumn(label: Text('Phone')),
+              DataColumn(label: Text('Status')),
+              DataColumn(label: Text('Category')),
+              DataColumn(label: Text('Action')),
+            ],
+            rows: const <DataRow>[
+              DataRow(
+                cells: <DataCell>[
+                  DataCell(Text('John')),
+                  DataCell(Text('123 Main St')),
+                  DataCell(Text('New York')),
+                  DataCell(Text('USA')),
+                  DataCell(Text('1985-05-15')),
+                  DataCell(Text('36')),
+                  DataCell(Text('555-1234')),
+                  DataCell(Text('Active')),
+                  DataCell(Text('Category 1')),
+                  DataCell(Text('Edit')),
+                ],
+              ),
+              DataRow(
+                cells: <DataCell>[
+                  DataCell(Text('Jane')),
+                  DataCell(Text('Block 4 Lot6, Unit 54 456 Elm St')),
+                  DataCell(Text('Los Angeles')),
+                  DataCell(Text('USA')),
+                  DataCell(Text('1990-10-20')),
+                  DataCell(Text('31')),
+                  DataCell(Text('555-5678')),
+                  DataCell(Text('Inactive')),
+                  DataCell(Text('Category 2')),
+                  DataCell(Text('Edit')),
+                ],
+              ),
+              // Add more rows as needed
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
 class BigCard extends StatelessWidget {
   const BigCard({
     super.key,
